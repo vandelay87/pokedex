@@ -1,5 +1,5 @@
+import type { PokemonListResponse } from '@models/pokemon'
 import { renderHook, waitFor } from '@testing-library/react'
-import type { PokemonListResponse } from '@types/pokemon'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { usePokemonList } from './usePokemonList'
 

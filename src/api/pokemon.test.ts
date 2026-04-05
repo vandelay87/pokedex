@@ -1,7 +1,7 @@
 import type {
   PokemonDetail,
   PokemonListResponse,
-} from '@types/pokemon'
+} from '@models/pokemon'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { fetchPokemonList, fetchPokemonDetail } from './pokemon'
 

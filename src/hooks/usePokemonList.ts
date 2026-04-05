@@ -1,5 +1,5 @@
 import { fetchPokemonList } from '@api/pokemon'
-import type { PokemonSummary } from '@types/pokemon'
+import type { PokemonSummary } from '@models/pokemon'
 import { useEffect, useState } from 'react'
 
 interface UsePokemonListResult {

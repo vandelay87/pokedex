@@ -9,7 +9,7 @@ export default defineConfig({
       '@components': '/src/components',
       '@hooks': '/src/hooks',
       '@pages': '/src/pages',
-      '@types': '/src/types',
+      '@models': '/src/types',
     },
   },
   test: {

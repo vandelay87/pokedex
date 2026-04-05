@@ -1,5 +1,5 @@
+import type { PokemonDetail } from '@models/pokemon'
 import { renderHook, waitFor } from '@testing-library/react'
-import type { PokemonDetail } from '@types/pokemon'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { usePokemonDetail } from './usePokemonDetail'
 
