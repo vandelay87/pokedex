@@ -62,11 +62,35 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 12px 8px;
 }
 
 .listPanel {
+  position: relative;
   width: 100%;
   overflow-y: auto;
+  padding-inline-end: 8px;
+}
+
+.listPanel::before,
+.listPanel::after {
+  content: '';
+  position: sticky;
+  display: block;
+  height: 24px;
+  z-index: 1;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.listPanel::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--color-bg), transparent);
+}
+
+.listPanel::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--color-bg), transparent);
 }
 
 .detailPanel {
@@ -122,6 +146,7 @@
   .listPanel {
     width: 40%;
     overflow-y: auto;
+    margin-inline-end: 8px;
   }
 
   .detailPanel {
@@ -132,6 +157,15 @@
     transform: none;
     visibility: visible;
     transition: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-inline-start: 1px solid var(--color-border);
+    padding-inline-start: 16px;
+    margin-block: -12px;
+    margin-inline-end: -8px;
+    padding-block: 12px;
+    padding-inline-end: 8px;
   }
 
   .detailPanelOpen {
