@@ -1,6 +1,7 @@
 import type { PokemonSummary } from '@models/pokemon'
 import { formatId } from '@utils/formatId'
 import type { FC } from 'react'
+import styles from './PokemonCard.module.css'
 
 interface PokemonCardProps {
   pokemon: PokemonSummary
@@ -25,22 +26,37 @@ export const PokemonCard: FC<PokemonCardProps> = ({
   return (
     <button
       type="button"
+      className={`${styles.card}${selected ? ` ${styles.selected}` : ''}`}
       aria-label={formatAriaLabel(pokemon)}
       aria-pressed={selected}
       onClick={onClick}
     >
       <img
+        className={styles.sprite}
         src={pokemon.sprite}
         alt={pokemon.name}
         loading="lazy"
       />
-      <span>{formatId(pokemon.id)}</span>
-      <span>{pokemon.name}</span>
-      <span>
-        {pokemon.types.map((type) => (
-          <span key={type}>{type}</span>
-        ))}
-      </span>
+      <div className={styles.info}>
+        <div className={styles.nameRow}>
+          <span className={styles.id}>{formatId(pokemon.id)}</span>
+          <span className={styles.name}>{pokemon.name}</span>
+        </div>
+        <span className={styles.types}>
+          {pokemon.types.map((type) => (
+            <span
+              key={type}
+              className={styles.typeBadge}
+              style={{
+                backgroundColor: `var(--type-${type.toLowerCase()})`,
+                color: `var(--type-${type.toLowerCase()}-text)`,
+              }}
+            >
+              {type}
+            </span>
+          ))}
+        </span>
+      </div>
     </button>
   )
 }
