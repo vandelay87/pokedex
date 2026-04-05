@@ -166,7 +166,7 @@ export const Pokedex: FC = () => {
           role={isMobile ? 'dialog' : undefined}
           aria-modal={isMobile ? true : undefined}
           aria-label={isMobile ? 'Pokemon details' : undefined}
-          aria-hidden={isMobile && !overlayOpen ? true : undefined}
+          aria-hidden={isMobile && (!overlayOpen || isClosing) ? 'true' : undefined}
           onKeyDown={isMobile ? handleOverlayKeyDown : undefined}
           onTransitionEnd={isMobile ? handleTransitionEnd : undefined}
         >
