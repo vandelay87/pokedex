@@ -25,7 +25,7 @@
   border: 2px solid var(--color-border);
   border-radius: 4px;
   background-color: var(--color-accent);
-  color: #fff;
+  color: var(--color-on-accent);
   cursor: pointer;
   min-height: 44px;
   min-width: 44px;

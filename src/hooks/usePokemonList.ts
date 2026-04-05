@@ -24,7 +24,7 @@ export const usePokemonList = (): UsePokemonListResult => {
       try {
         const data = await fetchPokemonList()
         if (!cancelled) {
-          setPokemon(data.pokemon.sort((a, b) => a.id - b.id))
+          setPokemon([...data.pokemon].sort((a, b) => a.id - b.id))
           setLoading(false)
         }
       } catch (err) {

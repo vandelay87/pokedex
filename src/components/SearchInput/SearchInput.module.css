@@ -10,7 +10,7 @@
   background-color: var(--color-surface);
   border: 2px solid var(--color-border);
   border-radius: 4px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-body);
   font-size: 14px;
   color: var(--color-text);
   min-height: 44px;

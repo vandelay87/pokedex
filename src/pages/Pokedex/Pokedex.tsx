@@ -137,9 +137,9 @@ export const Pokedex: FC = () => {
           ref={overlayRef}
           className={`${styles.detailPanel}${overlayOpen ? ` ${styles.detailPanelOpen}` : ''}`}
           tabIndex={isMobile ? -1 : undefined}
-          role={isMobile ? 'dialog' : undefined}
-          aria-modal={isMobile ? true : undefined}
-          aria-label={isMobile ? 'Pokemon details' : undefined}
+          role={overlayOpen ? 'dialog' : undefined}
+          aria-modal={overlayOpen ? true : undefined}
+          aria-label={overlayOpen ? 'Pokemon details' : undefined}
           aria-hidden={isMobile && !overlayOpen ? 'true' : undefined}
           onKeyDown={isMobile ? handleOverlayKeyDown : undefined}
         >
