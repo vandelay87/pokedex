@@ -1,0 +1,47 @@
+@import './styles/tokens.css';
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+button,
+label {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+}
+
+#root {
+  height: 100vh;
+}

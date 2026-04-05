@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('../assets/fonts/PressStart2P-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Base palette */
+  --color-bg: #F8F0E0;
+  --color-surface: #FFF8EC;
+  --color-surface-hover: #F0E8D0;
+  --color-border: #504040;
+  --color-text: #383030;
+  --color-text-secondary: #787070;
+  --color-accent: #E03030;
+  --color-on-accent: #ffffff;
+  --color-stat-low: #C03028;
+  --color-stat-mid: #F8D030;
+  --color-stat-high: #78C850;
+
+  /* Font */
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --font-body: 'Courier New', monospace;
+
+  /* Z-index scale */
+  --z-overlay: 100;
+
+  /* Type colours */
+  --type-normal: #A8A878;
+  --type-fire: #F08030;
+  --type-water: #6890F0;
+  --type-grass: #78C850;
+  --type-electric: #F8D030;
+  --type-psychic: #F85888;
+  --type-rock: #B8A038;
+  --type-dragon: #7038F8;
+  --type-steel: #B8B8D0;
+  --type-ice: #98D8D8;
+  --type-fighting: #C03028;
+  --type-poison: #A040A0;
+  --type-ground: #E0C068;
+  --type-flying: #A890F0;
+  --type-bug: #A8B820;
+  --type-ghost: #705898;
+  --type-dark: #705848;
+  --type-fairy: #EE99AC;
+
+  /*
+   * Type text colours (precomputed for WCAG AA contrast >= 4.5:1)
+   *
+   *   normal    #A8A878 on #383030  →  5.23:1
+   *   fire      #F08030 on #383030  →  4.80:1
+   *   water     #6890F0 on #282020  →  5.19:1
+   *   grass     #78C850 on #383030  →  6.23:1
+   *   electric  #F8D030 on #383030  →  8.60:1
+   *   psychic   #F85888 on #282020  →  5.12:1
+   *   rock      #B8A038 on #383030  →  4.97:1
+   *   dragon    #7038F8 on #ffffff  →  5.82:1
+   *   steel     #B8B8D0 on #383030  →  6.61:1
+   *   ice       #98D8D8 on #383030  →  8.05:1
+   *   fighting  #C03028 on #ffffff  →  5.68:1
+   *   poison    #A040A0 on #ffffff  →  5.62:1
+   *   ground    #E0C068 on #383030  →  7.29:1
+   *   flying    #A890F0 on #383030  →  4.84:1
+   *   bug       #A8B820 on #383030  →  5.84:1
+   *   ghost     #705898 on #ffffff  →  5.94:1
+   *   dark      #705848 on #ffffff  →  6.61:1
+   *   fairy     #EE99AC on #383030  →  5.99:1
+   */
+  --type-normal-text: #383030;
+  --type-fire-text: #383030;
+  --type-water-text: #282020;
+  --type-grass-text: #383030;
+  --type-electric-text: #383030;
+  --type-psychic-text: #282020;
+  --type-rock-text: #383030;
+  --type-dragon-text: #fff;
+  --type-steel-text: #383030;
+  --type-ice-text: #383030;
+  --type-fighting-text: #fff;
+  --type-poison-text: #fff;
+  --type-ground-text: #383030;
+  --type-flying-text: #383030;
+  --type-bug-text: #383030;
+  --type-ghost-text: #fff;
+  --type-dark-text: #fff;
+  --type-fairy-text: #383030;
+}

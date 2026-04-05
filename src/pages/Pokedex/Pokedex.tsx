@@ -27,7 +27,7 @@ export const Pokedex: FC = () => {
   const triggerRef = useRef<HTMLElement | null>(null)
   const overlayRef = useRef<HTMLDivElement | null>(null)
 
-  const showOverlay = isMobile && selectedId !== null
+  const overlayOpen = isMobile && selectedId !== null
 
   const handleSelect = useCallback(
     (id: number) => {
@@ -83,7 +83,7 @@ export const Pokedex: FC = () => {
 
   // Focus the overlay when it opens — fall back to overlay div itself if no focusable children yet
   useEffect(() => {
-    if (showOverlay && overlayRef.current) {
+    if (overlayOpen && overlayRef.current) {
       const focusable = overlayRef.current.querySelectorAll<HTMLElement>(
         FOCUSABLE_SELECTOR,
       )
@@ -93,7 +93,7 @@ export const Pokedex: FC = () => {
         overlayRef.current.focus()
       }
     }
-  }, [showOverlay])
+  }, [overlayOpen])
 
   // Clear stale triggerRef when switching to desktop
   useEffect(() => {
@@ -103,16 +103,22 @@ export const Pokedex: FC = () => {
   }, [isDesktop])
 
   if (listLoading) {
-    return <p>Loading Pokemon...</p>
+    return (
+      <div className={styles.stateContainer}>
+        <p className={styles.loadingText}>Loading Pokemon...</p>
+      </div>
+    )
   }
 
   if (listError) {
     return (
-      <div>
-        <p>Error: {listError}</p>
-        <button type="button" onClick={retry}>
-          Retry
-        </button>
+      <div className={styles.stateContainer}>
+        <div className={styles.errorBox}>
+          <p className={styles.errorText}>Error: {listError}</p>
+          <button type="button" className={styles.retryButton} onClick={retry}>
+            Retry
+          </button>
+        </div>
       </div>
     )
   }
@@ -127,14 +133,14 @@ export const Pokedex: FC = () => {
           selectedId={selectedId}
         />
       </div>
-      {(isDesktop || showOverlay) && (
-        <div
+      <div
           ref={overlayRef}
-          className={styles.detailPanel}
+          className={`${styles.detailPanel}${overlayOpen ? ` ${styles.detailPanelOpen}` : ''}`}
           tabIndex={isMobile ? -1 : undefined}
-          role={isMobile ? 'dialog' : undefined}
-          aria-modal={isMobile ? true : undefined}
-          aria-label={isMobile ? 'Pokemon details' : undefined}
+          role={overlayOpen ? 'dialog' : undefined}
+          aria-modal={overlayOpen ? true : undefined}
+          aria-label={overlayOpen ? 'Pokemon details' : undefined}
+          aria-hidden={isMobile && !overlayOpen ? 'true' : undefined}
           onKeyDown={isMobile ? handleOverlayKeyDown : undefined}
         >
           {isMobile && (
@@ -154,8 +160,7 @@ export const Pokedex: FC = () => {
               error={detailError}
             />
           </ErrorBoundary>
-        </div>
-      )}
+      </div>
     </div>
   )
 }

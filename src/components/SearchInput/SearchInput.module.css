@@ -1,0 +1,53 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  padding: 4px 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 44px 10px 12px;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text);
+  min-height: 44px;
+}
+
+.input::placeholder {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.clearButton {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 4px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clearButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

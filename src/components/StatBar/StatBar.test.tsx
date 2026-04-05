@@ -20,16 +20,16 @@ describe('StatBar', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders bar with correct width percentage', () => {
+  it('renders bar fill with correct width via CSS custom property', () => {
     const { container } = render(<StatBar label="HP" value={127} maxValue={255} />)
-    const bar = container.querySelector('[style]')
-    expect(bar).toHaveStyle({ width: `${(127 / 255) * 100}%` })
+    const fill = container.querySelector('[class*="fill"]')
+    expect(fill).toHaveStyle({ '--stat-width': `${(127 / 255) * 100}%` })
   })
 
   it('caps bar width at 100% when value exceeds maxValue', () => {
     const { container } = render(<StatBar label="HP" value={300} maxValue={255} />)
-    const bar = container.querySelector('[style]')
-    expect(bar).toHaveStyle({ width: '100%' })
+    const fill = container.querySelector('[class*="fill"]')
+    expect(fill).toHaveStyle({ '--stat-width': '100%' })
   })
 
   it('has role="progressbar" with correct aria value attributes', () => {
@@ -38,5 +38,29 @@ describe('StatBar', () => {
     expect(progressbar).toHaveAttribute('aria-valuenow', '49')
     expect(progressbar).toHaveAttribute('aria-valuemin', '0')
     expect(progressbar).toHaveAttribute('aria-valuemax', '255')
+  })
+
+  it('applies stagger index as CSS custom property', () => {
+    const { container } = render(<StatBar label="Speed" value={45} index={3} />)
+    const fill = container.querySelector('[class*="fill"]')
+    expect(fill).toHaveStyle({ '--stat-index': '3' })
+  })
+
+  it('applies red colour for low stat values', () => {
+    const { container } = render(<StatBar label="HP" value={30} maxValue={255} />)
+    const fill = container.querySelector('[class*="fill"]')
+    expect(fill).toHaveStyle({ backgroundColor: 'var(--color-stat-low)' })
+  })
+
+  it('applies yellow colour for medium stat values', () => {
+    const { container } = render(<StatBar label="HP" value={100} maxValue={255} />)
+    const fill = container.querySelector('[class*="fill"]')
+    expect(fill).toHaveStyle({ backgroundColor: 'var(--color-stat-mid)' })
+  })
+
+  it('applies green colour for high stat values', () => {
+    const { container } = render(<StatBar label="HP" value={200} maxValue={255} />)
+    const fill = container.querySelector('[class*="fill"]')
+    expect(fill).toHaveStyle({ backgroundColor: 'var(--color-stat-high)' })
   })
 })

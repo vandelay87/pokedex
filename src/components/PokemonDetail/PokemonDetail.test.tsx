@@ -55,14 +55,20 @@ describe('PokemonDetail', () => {
     expect(screen.getByText('Poison')).toBeInTheDocument()
   })
 
-  it('displays height, weight, category, and gender rate', () => {
+  it('displays height and weight with converted units', () => {
     render(
       <PokemonDetail pokemon={mockPokemon} loading={false} error={null} />,
     )
     expect(screen.getByText('Height')).toBeInTheDocument()
-    expect(screen.getByText('7')).toBeInTheDocument()
+    expect(screen.getByText('0.7 m')).toBeInTheDocument()
     expect(screen.getByText('Weight')).toBeInTheDocument()
-    expect(screen.getByText('69')).toBeInTheDocument()
+    expect(screen.getByText('6.9 kg')).toBeInTheDocument()
+  })
+
+  it('displays category and gender rate', () => {
+    render(
+      <PokemonDetail pokemon={mockPokemon} loading={false} error={null} />,
+    )
     expect(screen.getByText('Category')).toBeInTheDocument()
     expect(screen.getByText('Seed Pokemon')).toBeInTheDocument()
     expect(screen.getByText('Gender Rate')).toBeInTheDocument()

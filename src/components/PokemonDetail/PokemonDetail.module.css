@@ -1,0 +1,157 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--color-surface);
+  border-radius: 4px;
+}
+
+.header {
+  text-align: center;
+}
+
+.name {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.id {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+@keyframes spriteFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sprite {
+  display: block;
+  width: 192px;
+  height: 192px;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  animation: spriteFadeIn 200ms ease-out;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    gap: 4px;
+    padding: 12px;
+  }
+
+  .sprite {
+    width: 288px;
+    height: 288px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sprite {
+    animation: none;
+  }
+}
+
+.types {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.description {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  padding: 12px;
+  margin: 0;
+  background-color: var(--color-bg);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+}
+
+.infoLabel {
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+.infoValue {
+  color: var(--color-text);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.loadingText {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text);
+  text-align: center;
+  padding: 32px 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingText {
+    animation: none;
+  }
+}
+
+.errorText {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text);
+  text-align: center;
+  padding: 32px 0;
+}
+
+.noSelection {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: 32px 0;
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+}
