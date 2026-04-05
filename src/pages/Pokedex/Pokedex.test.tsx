@@ -207,16 +207,15 @@ describe('Pokedex page', () => {
       mockIsDesktop = false
     })
 
-    it('does not show detail panel when no pokemon is selected', async () => {
+    it('hides detail panel from assistive technology when no pokemon is selected', async () => {
       render(<Pokedex />, { wrapper: createWrapper() })
 
       await waitFor(() => {
         expect(screen.getByText('Bulbasaur')).toBeInTheDocument()
       })
 
-      expect(
-        screen.queryByText('Select a Pokemon to view details'),
-      ).not.toBeInTheDocument()
+      const dialog = screen.getByRole('dialog', { hidden: true })
+      expect(dialog).toHaveAttribute('aria-hidden', 'true')
     })
 
     it('shows overlay with back button when pokemon is selected', async () => {
@@ -259,8 +258,10 @@ describe('Pokedex page', () => {
       const backButton = screen.getByText('Back')
       await user.click(backButton)
 
+      // After close, the dialog is still in the DOM but hidden from assistive tech
       await waitFor(() => {
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+        const dialog = screen.getByRole('dialog', { hidden: true })
+        expect(dialog).toHaveAttribute('aria-hidden', 'true')
       })
 
       // Focus should return to the triggering card
@@ -307,8 +308,10 @@ describe('Pokedex page', () => {
 
       await user.keyboard('{Escape}')
 
+      // After close, the dialog is still in the DOM but hidden from assistive tech
       await waitFor(() => {
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+        const dialog = screen.getByRole('dialog', { hidden: true })
+        expect(dialog).toHaveAttribute('aria-hidden', 'true')
       })
 
       await waitFor(() => {
