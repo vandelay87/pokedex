@@ -2,12 +2,24 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  base: '/apps/pokedex/',
   plugins: [react()],
+  server: {
+    proxy: {
+      '/pokedex': {
+        target: 'https://api.akli.dev',
+        changeOrigin: true,
+      },
+    },
+  },
   resolve: {
     alias: {
+      '@api': '/src/api',
       '@components': '/src/components',
-      '@pages': '/src/pages',
       '@hooks': '/src/hooks',
+      '@pages': '/src/pages',
+      '@models': '/src/types',
+      '@utils': '/src/utils',
     },
   },
   test: {

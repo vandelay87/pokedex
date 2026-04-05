@@ -1,0 +1,48 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.listPanel {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.detailPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: white;
+  overflow-y: auto;
+}
+
+.backButton {
+  margin: 8px;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .listPanel {
+    width: 40%;
+    overflow-y: auto;
+  }
+
+  .detailPanel {
+    position: static;
+    width: 60%;
+    overflow-y: auto;
+    z-index: auto;
+  }
+
+  .backButton {
+    display: none;
+  }
+}
