@@ -80,7 +80,7 @@ export const Pokedex: FC = () => {
     [closeOverlay],
   )
 
-  // Focus the overlay when it opens
+  // Focus the overlay when it opens — fall back to overlay div itself if no focusable children yet
   useEffect(() => {
     if (showOverlay && overlayRef.current) {
       const focusable = overlayRef.current.querySelectorAll<HTMLElement>(
@@ -88,9 +88,18 @@ export const Pokedex: FC = () => {
       )
       if (focusable.length > 0) {
         focusable[0].focus()
+      } else {
+        overlayRef.current.focus()
       }
     }
   }, [showOverlay])
+
+  // Clear stale triggerRef when switching to desktop
+  useEffect(() => {
+    if (isDesktop) {
+      triggerRef.current = null
+    }
+  }, [isDesktop])
 
   if (listLoading) {
     return <p>Loading Pokemon...</p>
@@ -114,6 +123,7 @@ export const Pokedex: FC = () => {
         <div
           ref={overlayRef}
           className={styles.detailPanel}
+          tabIndex={isMobile ? -1 : undefined}
           role={isMobile ? 'dialog' : undefined}
           aria-modal={isMobile ? true : undefined}
           aria-label={isMobile ? 'Pokemon details' : undefined}
@@ -123,6 +133,7 @@ export const Pokedex: FC = () => {
             <button
               type="button"
               className={styles.backButton}
+              aria-label="Close Pokemon details"
               onClick={closeOverlay}
             >
               Back

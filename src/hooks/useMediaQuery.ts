@@ -1,12 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useMediaQuery = (query: string): boolean => {
-  const getMatch = useCallback(
-    () => window.matchMedia(query).matches,
-    [query],
+  const [matches, setMatches] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(query).matches : false,
   )
-
-  const [matches, setMatches] = useState(getMatch)
 
   useEffect(() => {
     const mql = window.matchMedia(query)
