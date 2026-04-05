@@ -10,13 +10,18 @@ To write a new PRD, copy `docs/prds/template.md` and fill it in.
 
 ## Stack
 
-- TypeScript
-- Vitest for testing
+- React 19 + TypeScript
+- Vite 7
+- CSS Modules
+- Vitest + Testing Library
 - Package manager: pnpm (do not use npm or yarn)
 
 ## Conventions
 
-- Each module has a co-located test file `<name>.test.ts`
+- Components live in `src/components/<Name>/<Name>.tsx` with a barrel `index.ts`
+- Pages live in `src/pages/<Name>/<Name>.tsx` with a barrel `index.ts`
+- Each component/page has a co-located test file `<Name>.test.tsx`
+- Use path aliases: `@components/`, `@pages/`, `@hooks/`
 
 ## Workflow
 
