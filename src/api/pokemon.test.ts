@@ -49,7 +49,7 @@ describe('fetchPokemonList', () => {
     const result = await fetchPokemonList()
 
     expect(mockFetch).toHaveBeenCalledWith(
-      'https://api.akli.dev/pokedex/pokemon',
+      '/pokedex/pokemon',
     )
     expect(result).toEqual(mockListResponse)
   })
@@ -81,7 +81,7 @@ describe('fetchPokemonDetail', () => {
     const result = await fetchPokemonDetail(1)
 
     expect(mockFetch).toHaveBeenCalledWith(
-      'https://api.akli.dev/pokedex/pokemon/1',
+      '/pokedex/pokemon/1',
     )
     expect(result).toEqual(mockDetailResponse)
   })

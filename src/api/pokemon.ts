@@ -1,6 +1,8 @@
 import type { PokemonDetail, PokemonListResponse } from '@models/pokemon'
 
-const API_BASE = 'https://api.akli.dev/pokedex'
+const API_BASE = import.meta.env.PROD
+  ? 'https://api.akli.dev/pokedex'
+  : '/pokedex'
 
 export const fetchPokemonList = async (): Promise<PokemonListResponse> => {
   const response = await fetch(`${API_BASE}/pokemon`)

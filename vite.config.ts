@@ -3,6 +3,14 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/pokedex': {
+        target: 'https://api.akli.dev',
+        changeOrigin: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       '@api': '/src/api',
