@@ -5,13 +5,14 @@
 
 .input {
   width: 100%;
-  padding: 10px 40px 10px 12px;
+  padding: 10px 44px 10px 12px;
   background-color: var(--color-surface);
   border: 2px solid var(--color-border);
   border-radius: 4px;
   font-family: 'Courier New', monospace;
   font-size: 14px;
   color: var(--color-text);
+  min-height: 44px;
 }
 
 .input::placeholder {
@@ -28,7 +29,7 @@
 .clearButton {
   position: absolute;
   inset-block-start: 50%;
-  inset-inline-end: 8px;
+  inset-inline-end: 4px;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -38,6 +39,11 @@
   cursor: pointer;
   padding: 4px;
   line-height: 1;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .clearButton:focus-visible {
