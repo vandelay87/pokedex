@@ -15,7 +15,8 @@
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
-      "@models/*": ["src/types/*"]
+      "@models/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
     "resolveJsonModule": true,

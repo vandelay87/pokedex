@@ -1,26 +1,8 @@
-import type { PokemonDetail as PokemonDetailType } from '@models/pokemon'
 import { render, screen } from '@testing-library/react'
+import { mockBulbasaurDetail } from '../../test/fixtures/pokemon'
 import { PokemonDetail } from './PokemonDetail'
 
-const mockPokemon: PokemonDetailType = {
-  id: 1,
-  name: 'Bulbasaur',
-  types: ['Grass', 'Poison'],
-  sprite: 'https://example.com/1.png',
-  height: 7,
-  weight: 69,
-  category: 'Seed Pokemon',
-  description: 'A strange seed was planted on its back at birth.',
-  genderRate: 1,
-  stats: {
-    hp: 45,
-    attack: 49,
-    defense: 49,
-    specialAttack: 65,
-    specialDefense: 65,
-    speed: 45,
-  },
-}
+const mockPokemon = mockBulbasaurDetail
 
 describe('PokemonDetail', () => {
   it('has role="region" with aria-label', () => {

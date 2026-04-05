@@ -1,5 +1,6 @@
 import { StatBar } from '@components/StatBar'
 import type { PokemonDetail as PokemonDetailType } from '@models/pokemon'
+import { formatId } from '@utils/formatId'
 import type { FC } from 'react'
 
 interface PokemonDetailProps {
@@ -7,8 +8,6 @@ interface PokemonDetailProps {
   loading: boolean
   error: string | null
 }
-
-const formatId = (id: number): string => `#${String(id).padStart(3, '0')}`
 
 const STAT_LABELS: Record<string, string> = {
   hp: 'HP',

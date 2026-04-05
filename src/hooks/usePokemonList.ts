@@ -17,7 +17,6 @@ export const usePokemonList = (): UsePokemonListResult => {
 
   useEffect(() => {
     let cancelled = false
-    setPokemon([])
     setLoading(true)
     setError(null)
 

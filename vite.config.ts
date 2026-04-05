@@ -19,6 +19,7 @@ export default defineConfig({
       '@hooks': '/src/hooks',
       '@pages': '/src/pages',
       '@models': '/src/types',
+      '@utils': '/src/utils',
     },
   },
   test: {

@@ -1,8 +1,7 @@
 import type { PokemonDetail, PokemonListResponse } from '@models/pokemon'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { createElement, type FC, type PropsWithChildren } from 'react'
-import { MemoryRouter } from 'react-router-dom'
+import { createWrapper } from '../../test/utils'
 import { Pokedex } from './Pokedex'
 
 const mockListResponse: PokemonListResponse = {
@@ -33,12 +32,6 @@ const mockDetail: PokemonDetail = {
     specialDefense: 50,
     speed: 90,
   },
-}
-
-const createWrapper = (initialEntries: string[] = ['/']): FC<PropsWithChildren> => {
-  const Wrapper: FC<PropsWithChildren> = ({ children }) =>
-    createElement(MemoryRouter, { initialEntries }, children)
-  return Wrapper
 }
 
 const mockFetch = (url: string) => {

@@ -1,14 +1,6 @@
 import { renderHook, act } from '@testing-library/react'
-import type { FC, PropsWithChildren } from 'react'
-import { createElement } from 'react'
-import { MemoryRouter } from 'react-router-dom'
+import { createWrapper } from '../test/utils'
 import { useSelectedPokemon } from './useSelectedPokemon'
-
-const createWrapper = (initialEntries: string[] = ['/']): FC<PropsWithChildren> => {
-  const Wrapper: FC<PropsWithChildren> = ({ children }) =>
-    createElement(MemoryRouter, { initialEntries }, children)
-  return Wrapper
-}
 
 describe('useSelectedPokemon', () => {
   it('returns null selectedId when no ?id= param is present', () => {

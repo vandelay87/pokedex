@@ -1,27 +1,9 @@
-import type { PokemonDetail } from '@models/pokemon'
 import { renderHook, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { mockBulbasaurDetail } from '../test/fixtures/pokemon'
 import { usePokemonDetail } from './usePokemonDetail'
 
-const mockDetail: PokemonDetail = {
-  id: 1,
-  name: 'Bulbasaur',
-  types: ['Grass', 'Poison'],
-  sprite: 'https://example.com/1.png',
-  height: 7,
-  weight: 69,
-  category: 'Seed Pokemon',
-  description: 'A strange seed was planted on its back at birth.',
-  genderRate: 1,
-  stats: {
-    hp: 45,
-    attack: 49,
-    defense: 49,
-    specialAttack: 65,
-    specialDefense: 65,
-    speed: 45,
-  },
-}
+const mockDetail = mockBulbasaurDetail
 
 describe('usePokemonDetail', () => {
   beforeEach(() => {

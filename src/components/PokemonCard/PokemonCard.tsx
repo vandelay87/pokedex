@@ -1,4 +1,5 @@
 import type { PokemonSummary } from '@models/pokemon'
+import { formatId } from '@utils/formatId'
 import type { FC } from 'react'
 
 interface PokemonCardProps {
@@ -6,8 +7,6 @@ interface PokemonCardProps {
   onClick: () => void
   selected?: boolean
 }
-
-const formatId = (id: number): string => `#${String(id).padStart(3, '0')}`
 
 const formatAriaLabel = (pokemon: PokemonSummary): string => {
   const types = pokemon.types
