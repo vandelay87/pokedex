@@ -153,7 +153,7 @@ describe('Pokedex page', () => {
     expect(screen.getByText('Mouse Pokemon')).toBeInTheDocument()
   })
 
-  it('shows error when list fetch fails', async () => {
+  it('shows error with retry button when list fetch fails', async () => {
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({ ok: false, status: 500 }),
@@ -163,6 +163,29 @@ describe('Pokedex page', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Error:/)).toBeInTheDocument()
+    })
+
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeInTheDocument()
+  })
+
+  it('retries fetching when retry button is clicked', async () => {
+    const user = userEvent.setup()
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce({ ok: false, status: 500 })
+      .mockImplementation(mockFetch)
+
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<Pokedex />, { wrapper: createWrapper() })
+
+    await waitFor(() => {
+      expect(screen.getByText(/Error:/)).toBeInTheDocument()
+    })
+
+    await user.click(screen.getByRole('button', { name: 'Retry' }))
+
+    await waitFor(() => {
+      expect(screen.getByText('Bulbasaur')).toBeInTheDocument()
     })
   })
 

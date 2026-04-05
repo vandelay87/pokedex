@@ -1,3 +1,4 @@
+import { ErrorBoundary } from '@components/ErrorBoundary'
 import { PokemonDetail } from '@components/PokemonDetail'
 import { PokemonList } from '@components/PokemonList'
 import { SearchInput } from '@components/SearchInput'
@@ -12,7 +13,7 @@ const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 export const Pokedex: FC = () => {
-  const { pokemon, loading: listLoading, error: listError } = usePokemonList()
+  const { pokemon, loading: listLoading, error: listError, retry } = usePokemonList()
   const { query, setQuery, filtered } = useSearchFilter(pokemon)
   const { selectedId, setSelectedId } = useSelectedPokemon()
   const {
@@ -106,7 +107,14 @@ export const Pokedex: FC = () => {
   }
 
   if (listError) {
-    return <p>Error: {listError}</p>
+    return (
+      <div>
+        <p>Error: {listError}</p>
+        <button type="button" onClick={retry}>
+          Retry
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -139,11 +147,13 @@ export const Pokedex: FC = () => {
               Back
             </button>
           )}
-          <PokemonDetail
-            pokemon={detail}
-            loading={detailLoading}
-            error={detailError}
-          />
+          <ErrorBoundary resetKey={selectedId}>
+            <PokemonDetail
+              pokemon={detail}
+              loading={detailLoading}
+              error={detailError}
+            />
+          </ErrorBoundary>
         </div>
       )}
     </div>
