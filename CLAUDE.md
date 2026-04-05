@@ -22,6 +22,7 @@ To write a new PRD, copy `docs/prds/template.md` and fill it in.
 - Pages live in `src/pages/<Name>/<Name>.tsx` with a barrel `index.ts`
 - Each component/page has a co-located test file `<Name>.test.tsx`
 - Use path aliases: `@components/`, `@pages/`, `@hooks/`
+- Use const arrow functions, not function declarations — enforced by ESLint (`func-style: expression`)
 
 ## Workflow
 
