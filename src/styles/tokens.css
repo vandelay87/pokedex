@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('../assets/fonts/PressStart2P-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Base palette */
+  --color-bg: #F8F0E0;
+  --color-surface: #FFF8EC;
+  --color-border: #504040;
+  --color-text: #383030;
+  --color-text-secondary: #787070;
+  --color-accent: #E03030;
+
+  /* Font */
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+
+  /* Z-index scale */
+  --z-overlay: 100;
+
+  /* Type colours */
+  --type-normal: #A8A878;
+  --type-fire: #F08030;
+  --type-water: #6890F0;
+  --type-grass: #78C850;
+  --type-electric: #F8D030;
+  --type-psychic: #F85888;
+  --type-rock: #B8A038;
+  --type-dragon: #7038F8;
+  --type-steel: #B8B8D0;
+  --type-ice: #98D8D8;
+  --type-fighting: #C03028;
+  --type-poison: #A040A0;
+  --type-ground: #E0C068;
+  --type-flying: #A890F0;
+  --type-bug: #A8B820;
+  --type-ghost: #705898;
+  --type-dark: #705848;
+  --type-fairy: #EE99AC;
+
+  /* Type text colours (precomputed for WCAG AA contrast) */
+  --type-normal-text: #383030;
+  --type-fire-text: #383030;
+  --type-water-text: #383030;
+  --type-grass-text: #383030;
+  --type-electric-text: #383030;
+  --type-psychic-text: #383030;
+  --type-rock-text: #383030;
+  --type-dragon-text: #fff;
+  --type-steel-text: #383030;
+  --type-ice-text: #383030;
+  --type-fighting-text: #fff;
+  --type-poison-text: #fff;
+  --type-ground-text: #383030;
+  --type-flying-text: #383030;
+  --type-bug-text: #383030;
+  --type-ghost-text: #fff;
+  --type-dark-text: #fff;
+  --type-fairy-text: #383030;
+}
