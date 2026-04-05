@@ -57,10 +57,21 @@ const mockFetch = (url: string) => {
   return Promise.resolve({ ok: false, status: 404 })
 }
 
+let mockIsDesktop = true
+
+vi.mock('@hooks', async () => {
+  const actual = await vi.importActual<typeof import('@hooks')>('@hooks')
+  return {
+    ...actual,
+    useMediaQuery: () => mockIsDesktop,
+  }
+})
+
 describe('Pokedex page', () => {
   beforeEach(() => {
     vi.restoreAllMocks()
     vi.stubGlobal('fetch', vi.fn(mockFetch))
+    mockIsDesktop = true
   })
 
   it('shows loading state while fetching pokemon list', () => {
@@ -152,6 +163,122 @@ describe('Pokedex page', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Error:/)).toBeInTheDocument()
+    })
+  })
+
+  describe('desktop layout', () => {
+    beforeEach(() => {
+      mockIsDesktop = true
+    })
+
+    it('shows both list and detail panel side by side', async () => {
+      render(<Pokedex />, { wrapper: createWrapper() })
+
+      await waitFor(() => {
+        expect(screen.getByText('Bulbasaur')).toBeInTheDocument()
+      })
+
+      expect(
+        screen.getByText('Select a Pokemon to view details'),
+      ).toBeInTheDocument()
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(screen.queryByText('Back')).not.toBeInTheDocument()
+    })
+  })
+
+  describe('mobile layout', () => {
+    beforeEach(() => {
+      mockIsDesktop = false
+    })
+
+    it('does not show detail panel when no pokemon is selected', async () => {
+      render(<Pokedex />, { wrapper: createWrapper() })
+
+      await waitFor(() => {
+        expect(screen.getByText('Bulbasaur')).toBeInTheDocument()
+      })
+
+      expect(
+        screen.queryByText('Select a Pokemon to view details'),
+      ).not.toBeInTheDocument()
+    })
+
+    it('shows overlay with back button when pokemon is selected', async () => {
+      const user = userEvent.setup()
+      render(<Pokedex />, { wrapper: createWrapper() })
+
+      await waitFor(() => {
+        expect(screen.getByText('Pikachu')).toBeInTheDocument()
+      })
+
+      const pikachuButton = screen.getByRole('button', {
+        name: 'Pikachu, Electric type',
+      })
+      await user.click(pikachuButton)
+
+      await waitFor(() => {
+        expect(screen.getByRole('dialog')).toBeInTheDocument()
+      })
+
+      expect(screen.getByText('Back')).toBeInTheDocument()
+    })
+
+    it('closes overlay and returns focus when back button is clicked', async () => {
+      const user = userEvent.setup()
+      render(<Pokedex />, { wrapper: createWrapper() })
+
+      await waitFor(() => {
+        expect(screen.getByText('Pikachu')).toBeInTheDocument()
+      })
+
+      const pikachuButton = screen.getByRole('button', {
+        name: 'Pikachu, Electric type',
+      })
+      await user.click(pikachuButton)
+
+      await waitFor(() => {
+        expect(screen.getByRole('dialog')).toBeInTheDocument()
+      })
+
+      const backButton = screen.getByText('Back')
+      await user.click(backButton)
+
+      await waitFor(() => {
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      })
+
+      // Focus should return to the triggering card
+      await waitFor(() => {
+        expect(document.activeElement).toBe(pikachuButton)
+      })
+    })
+
+    it('closes overlay when Escape is pressed', async () => {
+      const user = userEvent.setup()
+      render(<Pokedex />, { wrapper: createWrapper() })
+
+      await waitFor(() => {
+        expect(screen.getByText('Pikachu')).toBeInTheDocument()
+      })
+
+      const pikachuButton = screen.getByRole('button', {
+        name: 'Pikachu, Electric type',
+      })
+      await user.click(pikachuButton)
+
+      await waitFor(() => {
+        expect(screen.getByRole('dialog')).toBeInTheDocument()
+      })
+
+      await user.keyboard('{Escape}')
+
+      await waitFor(() => {
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      })
+
+      await waitFor(() => {
+        expect(document.activeElement).toBe(pikachuButton)
+      })
     })
   })
 })
