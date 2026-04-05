@@ -1,6 +1,7 @@
 import { PokemonCard } from '@components/PokemonCard'
 import type { PokemonSummary } from '@models/pokemon'
 import type { FC } from 'react'
+import styles from './PokemonList.module.css'
 
 interface PokemonListProps {
   pokemon: PokemonSummary[]
@@ -14,11 +15,11 @@ export const PokemonList: FC<PokemonListProps> = ({
   selectedId = null,
 }) => {
   if (pokemon.length === 0) {
-    return <p>No Pokemon found.</p>
+    return <p className={styles.emptyState}>No Pokemon found.</p>
   }
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {pokemon.map((p) => (
         <li key={p.id}>
           <PokemonCard

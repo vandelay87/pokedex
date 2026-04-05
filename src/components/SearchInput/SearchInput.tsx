@@ -1,4 +1,5 @@
 import { useCallback, type FC, type KeyboardEvent } from 'react'
+import styles from './SearchInput.module.css'
 
 interface SearchInputProps {
   value: string
@@ -16,8 +17,9 @@ export const SearchInput: FC<SearchInputProps> = ({ value, onChange }) => {
   )
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <input
+        className={styles.input}
         type="text"
         aria-label="Search Pokemon"
         value={value}
@@ -26,7 +28,12 @@ export const SearchInput: FC<SearchInputProps> = ({ value, onChange }) => {
         placeholder="Search Pokemon..."
       />
       {value && (
-        <button type="button" aria-label="Clear search" onClick={() => onChange('')}>
+        <button
+          type="button"
+          className={styles.clearButton}
+          aria-label="Clear search"
+          onClick={() => onChange('')}
+        >
           ×
         </button>
       )}
