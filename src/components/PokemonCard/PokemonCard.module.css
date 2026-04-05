@@ -11,7 +11,7 @@
   text-align: start;
   font-family: var(--font-pixel);
   font-size: 12px;
-  transition: background-color 150ms ease;
+  transition: background-color 150ms ease, transform 150ms ease;
 }
 
 .card:focus-visible {
@@ -19,9 +19,38 @@
   outline-offset: 2px;
 }
 
+.card:active {
+  transform: scale(0.98);
+}
+
 @media (hover: hover) {
   .card:hover {
     background-color: var(--color-surface-hover);
+    transform: scale(1.02);
+  }
+
+  .card:hover:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:active {
+    transform: none;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover:active {
+    transform: none;
   }
 }
 

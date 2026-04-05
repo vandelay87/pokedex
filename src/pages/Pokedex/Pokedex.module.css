@@ -78,10 +78,29 @@
   z-index: var(--z-overlay);
   background: var(--color-surface);
   overflow-y: auto;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 250ms ease, visibility 0s linear 250ms;
+}
+
+.detailPanelOpen {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 250ms ease, visibility 0s linear 0s;
 }
 
 .backButton {
   margin: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detailPanel {
+    transition: none;
+  }
+
+  .detailPanelOpen {
+    transition: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -100,6 +119,13 @@
     width: 60%;
     overflow-y: auto;
     z-index: auto;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+
+  .detailPanelOpen {
+    transform: none;
   }
 
   .backButton {
