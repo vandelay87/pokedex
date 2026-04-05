@@ -1,0 +1,70 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--color-text);
+}
+
+.value {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.track {
+  height: 8px;
+  background-color: color-mix(in srgb, var(--color-border) 20%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 2px;
+  width: var(--stat-width);
+  animation: fillBar 300ms ease-out forwards;
+  animation-delay: calc(var(--stat-index, 0) * 75ms);
+  transform-origin: left;
+}
+
+.fill[data-animated="false"] {
+  animation: none;
+  width: var(--stat-width);
+}
+
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--stat-width);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    animation: none;
+    width: var(--stat-width);
+  }
+}
+
+@media (min-width: 768px) {
+  .label {
+    font-size: 12px;
+  }
+
+  .value {
+    font-size: 12px;
+  }
+}
