@@ -49,18 +49,18 @@ describe('StatBar', () => {
   it('applies red colour for low stat values', () => {
     const { container } = render(<StatBar label="HP" value={30} maxValue={255} />)
     const fill = container.querySelector('[class*="fill"]')
-    expect(fill).toHaveStyle({ backgroundColor: '#C03028' })
+    expect(fill).toHaveStyle({ backgroundColor: 'var(--color-stat-low)' })
   })
 
   it('applies yellow colour for medium stat values', () => {
     const { container } = render(<StatBar label="HP" value={100} maxValue={255} />)
     const fill = container.querySelector('[class*="fill"]')
-    expect(fill).toHaveStyle({ backgroundColor: '#F8D030' })
+    expect(fill).toHaveStyle({ backgroundColor: 'var(--color-stat-mid)' })
   })
 
   it('applies green colour for high stat values', () => {
     const { container } = render(<StatBar label="HP" value={200} maxValue={255} />)
     const fill = container.querySelector('[class*="fill"]')
-    expect(fill).toHaveStyle({ backgroundColor: '#78C850' })
+    expect(fill).toHaveStyle({ backgroundColor: 'var(--color-stat-high)' })
   })
 })

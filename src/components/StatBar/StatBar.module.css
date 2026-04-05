@@ -38,11 +38,6 @@
   transform-origin: left;
 }
 
-.fill[data-animated="false"] {
-  animation: none;
-  width: var(--stat-width);
-}
-
 @keyframes fillBar {
   from {
     width: 0%;
@@ -55,7 +50,7 @@
 @media (prefers-reduced-motion: reduce) {
   .fill {
     animation: none;
-    width: var(--stat-width);
+    animation-delay: 0s;
   }
 }
 

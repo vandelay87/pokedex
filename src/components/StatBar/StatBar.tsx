@@ -10,9 +10,9 @@ interface StatBarProps {
 
 const getStatColor = (value: number, maxValue: number): string => {
   const ratio = value / maxValue
-  if (ratio < 0.3) return '#C03028'
-  if (ratio < 0.6) return '#F8D030'
-  return '#78C850'
+  if (ratio < 0.3) return 'var(--color-stat-low)'
+  if (ratio < 0.6) return 'var(--color-stat-mid)'
+  return 'var(--color-stat-high)'
 }
 
 export const StatBar: FC<StatBarProps> = ({
@@ -42,7 +42,7 @@ export const StatBar: FC<StatBarProps> = ({
           style={
             {
               '--stat-width': `${percentage}%`,
-              '--stat-index': index,
+              '--stat-index': String(index),
               backgroundColor: getStatColor(value, maxValue),
             } as CSSProperties
           }
