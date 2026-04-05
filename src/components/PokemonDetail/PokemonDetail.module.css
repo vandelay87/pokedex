@@ -36,11 +36,23 @@
 
 .sprite {
   display: block;
-  width: 96px;
-  height: 96px;
+  width: 192px;
+  height: 192px;
   margin: 0 auto;
   image-rendering: pixelated;
   animation: spriteFadeIn 200ms ease-out;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    gap: 4px;
+    padding: 12px;
+  }
+
+  .sprite {
+    width: 288px;
+    height: 288px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
