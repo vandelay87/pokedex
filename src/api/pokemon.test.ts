@@ -1,8 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type {
   PokemonDetail,
   PokemonListResponse,
-} from '../types/pokemon'
+} from '@types/pokemon'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { fetchPokemonList, fetchPokemonDetail } from './pokemon'
 
 const mockListResponse: PokemonListResponse = {

@@ -1,6 +1,6 @@
+import { fetchPokemonList } from '@api/pokemon'
+import type { PokemonSummary } from '@types/pokemon'
 import { useEffect, useState } from 'react'
-import { fetchPokemonList } from '../api/pokemon'
-import type { PokemonSummary } from '../types/pokemon'
 
 interface UsePokemonListResult {
   pokemon: PokemonSummary[]

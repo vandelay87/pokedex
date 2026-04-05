@@ -1,4 +1,4 @@
-import type { PokemonDetail, PokemonListResponse } from '../types/pokemon'
+import type { PokemonDetail, PokemonListResponse } from '@types/pokemon'
 
 const API_BASE = 'https://api.akli.dev/pokedex'
 

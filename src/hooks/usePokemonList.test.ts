@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react'
+import type { PokemonListResponse } from '@types/pokemon'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PokemonListResponse } from '../types/pokemon'
 import { usePokemonList } from './usePokemonList'
 
 const mockListResponse: PokemonListResponse = {
