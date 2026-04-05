@@ -103,16 +103,22 @@ export const Pokedex: FC = () => {
   }, [isDesktop])
 
   if (listLoading) {
-    return <p>Loading Pokemon...</p>
+    return (
+      <div className={styles.stateContainer}>
+        <p className={styles.loadingText}>Loading Pokemon...</p>
+      </div>
+    )
   }
 
   if (listError) {
     return (
-      <div>
-        <p>Error: {listError}</p>
-        <button type="button" onClick={retry}>
-          Retry
-        </button>
+      <div className={styles.stateContainer}>
+        <div className={styles.errorBox}>
+          <p className={styles.errorText}>Error: {listError}</p>
+          <button type="button" className={styles.retryButton} onClick={retry}>
+            Retry
+          </button>
+        </div>
       </div>
     )
   }

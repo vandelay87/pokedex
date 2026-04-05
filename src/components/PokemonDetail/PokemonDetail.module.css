@@ -86,11 +86,41 @@
   gap: 8px;
 }
 
-.emptyText {
+@keyframes detailPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.loadingText {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text);
+  text-align: center;
+  padding: 32px 0;
+  animation: detailPulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingText {
+    animation: none;
+  }
+}
+
+.errorText {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text);
+  text-align: center;
+  padding: 32px 0;
+}
+
+.noSelection {
   font-family: var(--font-pixel);
   font-size: 12px;
   color: var(--color-text-secondary);
   text-align: center;
+  padding: 32px 0;
+  opacity: 0.7;
 }
 
 @media (min-width: 768px) {
