@@ -3,7 +3,7 @@ import { PokemonDetail } from '@components/PokemonDetail'
 import { PokemonList } from '@components/PokemonList'
 import { SearchInput } from '@components/SearchInput'
 import { useMediaQuery, usePokemonDetail, usePokemonList, useSearchFilter, useSelectedPokemon } from '@hooks'
-import { useCallback, useEffect, useRef, useState, type FC, type KeyboardEvent, type TransitionEvent } from 'react'
+import { useCallback, useEffect, useRef, type FC, type KeyboardEvent } from 'react'
 
 import styles from './Pokedex.module.css'
 
@@ -26,7 +26,6 @@ export const Pokedex: FC = () => {
   const isMobile = !isDesktop
   const triggerRef = useRef<HTMLElement | null>(null)
   const overlayRef = useRef<HTMLDivElement | null>(null)
-  const [isClosing, setIsClosing] = useState(false)
 
   const overlayOpen = isMobile && selectedId !== null
 
@@ -42,38 +41,13 @@ export const Pokedex: FC = () => {
   )
 
   const closeOverlay = useCallback(() => {
-    // Check if transitions are active — if not (prefers-reduced-motion or jsdom),
-    // skip the animation and close immediately
-    const el = overlayRef.current
-    if (el) {
-      const duration = getComputedStyle(el).transitionDuration
-      if (duration === '0s' || duration === '') {
-        setSelectedId(null)
-        const trigger = triggerRef.current
-        if (trigger) {
-          requestAnimationFrame(() => trigger.focus())
-          triggerRef.current = null
-        }
-        return
-      }
+    setSelectedId(null)
+    const trigger = triggerRef.current
+    if (trigger) {
+      requestAnimationFrame(() => trigger.focus())
+      triggerRef.current = null
     }
-    setIsClosing(true)
   }, [setSelectedId])
-
-  const handleTransitionEnd = useCallback(
-    (e: TransitionEvent<HTMLDivElement>) => {
-      if (e.propertyName === 'transform' && isClosing) {
-        setIsClosing(false)
-        setSelectedId(null)
-        const trigger = triggerRef.current
-        if (trigger) {
-          requestAnimationFrame(() => trigger.focus())
-          triggerRef.current = null
-        }
-      }
-    },
-    [isClosing, setSelectedId],
-  )
 
   const handleOverlayKeyDown = useCallback(
     (e: KeyboardEvent<HTMLDivElement>) => {
@@ -161,14 +135,13 @@ export const Pokedex: FC = () => {
       </div>
       <div
           ref={overlayRef}
-          className={`${styles.detailPanel}${overlayOpen && !isClosing ? ` ${styles.detailPanelOpen}` : ''}`}
+          className={`${styles.detailPanel}${overlayOpen ? ` ${styles.detailPanelOpen}` : ''}`}
           tabIndex={isMobile ? -1 : undefined}
           role={isMobile ? 'dialog' : undefined}
           aria-modal={isMobile ? true : undefined}
           aria-label={isMobile ? 'Pokemon details' : undefined}
-          aria-hidden={isMobile && (!overlayOpen || isClosing) ? 'true' : undefined}
+          aria-hidden={isMobile && !overlayOpen ? 'true' : undefined}
           onKeyDown={isMobile ? handleOverlayKeyDown : undefined}
-          onTransitionEnd={isMobile ? handleTransitionEnd : undefined}
         >
           {isMobile && (
             <button
