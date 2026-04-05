@@ -25,11 +25,11 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({
   error,
 }) => {
   const renderContent = () => {
-    if (loading) return <p className={styles.emptyText}>Loading...</p>
-    if (error) return <p className={styles.emptyText}>Error: {error}</p>
+    if (loading) return <p className={styles.loadingText}>Loading...</p>
+    if (error) return <p className={styles.errorText}>Error: {error}</p>
     if (!pokemon)
       return (
-        <p className={styles.emptyText}>Select a Pokemon to view details</p>
+        <p className={styles.noSelection}>Select a Pokemon to view details</p>
       )
 
     return (

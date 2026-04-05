@@ -1,3 +1,63 @@
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.stateContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 16px;
+}
+
+.loadingText {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: var(--color-text);
+  text-align: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingText {
+    animation: none;
+  }
+}
+
+.errorBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.errorText {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.8;
+}
+
+.retryButton {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  padding: 10px 24px;
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+}
+
 .layout {
   display: flex;
   flex-direction: column;
