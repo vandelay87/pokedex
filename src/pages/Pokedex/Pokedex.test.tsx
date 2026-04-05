@@ -276,6 +276,25 @@ describe('Pokedex page', () => {
       })
     })
 
+    it('overlay has aria-modal attribute', async () => {
+      const user = userEvent.setup()
+      render(<Pokedex />, { wrapper: createWrapper() })
+
+      await waitFor(() => {
+        expect(screen.getByText('Pikachu')).toBeInTheDocument()
+      })
+
+      await user.click(
+        screen.getByRole('button', { name: 'Pikachu, Electric type' }),
+      )
+
+      await waitFor(() => {
+        const dialog = screen.getByRole('dialog')
+        expect(dialog).toHaveAttribute('aria-modal', 'true')
+        expect(dialog).toHaveAttribute('aria-label', 'Pokemon details')
+      })
+    })
+
     it('closes overlay when Escape is pressed', async () => {
       const user = userEvent.setup()
       render(<Pokedex />, { wrapper: createWrapper() })

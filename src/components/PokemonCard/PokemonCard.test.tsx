@@ -69,4 +69,18 @@ describe('PokemonCard', () => {
     )
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
+
+  it('has aria-pressed="false" when not selected', () => {
+    render(<PokemonCard pokemon={bulbasaur} onClick={() => {}} />)
+    expect(
+      screen.getByRole('button', { name: 'Bulbasaur, Grass and Poison type' }),
+    ).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('has aria-pressed="true" when selected', () => {
+    render(<PokemonCard pokemon={bulbasaur} onClick={() => {}} selected />)
+    expect(
+      screen.getByRole('button', { name: 'Bulbasaur, Grass and Poison type' }),
+    ).toHaveAttribute('aria-pressed', 'true')
+  })
 })

@@ -31,4 +31,12 @@ describe('StatBar', () => {
     const bar = container.querySelector('[style]')
     expect(bar).toHaveStyle({ width: '100%' })
   })
+
+  it('has role="progressbar" with correct aria value attributes', () => {
+    render(<StatBar label="Attack" value={49} maxValue={255} />)
+    const progressbar = screen.getByRole('progressbar', { name: 'Attack: 49 out of 255' })
+    expect(progressbar).toHaveAttribute('aria-valuenow', '49')
+    expect(progressbar).toHaveAttribute('aria-valuemin', '0')
+    expect(progressbar).toHaveAttribute('aria-valuemax', '255')
+  })
 })
