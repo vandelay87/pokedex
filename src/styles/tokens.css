@@ -15,6 +15,9 @@
   --color-text: #383030;
   --color-text-secondary: #787070;
   --color-accent: #E03030;
+  --color-stat-low: #C03028;
+  --color-stat-mid: #F8D030;
+  --color-stat-high: #78C850;
 
   /* Font */
   --font-pixel: 'Press Start 2P', 'Courier New', monospace;

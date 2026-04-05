@@ -2,6 +2,7 @@ import { StatBar } from '@components/StatBar'
 import type { PokemonDetail as PokemonDetailType } from '@models/pokemon'
 import { formatId } from '@utils/formatId'
 import type { FC } from 'react'
+import styles from './PokemonDetail.module.css'
 
 interface PokemonDetailProps {
   pokemon: PokemonDetailType | null
@@ -24,35 +25,70 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({
   error,
 }) => {
   const renderContent = () => {
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error: {error}</p>
-    if (!pokemon) return <p>Select a Pokemon to view details</p>
+    if (loading) return <p className={styles.emptyText}>Loading...</p>
+    if (error) return <p className={styles.emptyText}>Error: {error}</p>
+    if (!pokemon)
+      return (
+        <p className={styles.emptyText}>Select a Pokemon to view details</p>
+      )
 
     return (
       <>
-        <h2>
-          {pokemon.name} {formatId(pokemon.id)}
-        </h2>
-        <img src={pokemon.sprite} alt={pokemon.name} />
-        <div>
+        <div className={styles.header}>
+          <h2 className={styles.name}>
+            {pokemon.name} <span className={styles.id}>{formatId(pokemon.id)}</span>
+          </h2>
+        </div>
+        <img
+          className={styles.sprite}
+          src={pokemon.sprite}
+          alt={pokemon.name}
+        />
+        <div className={styles.types}>
           {pokemon.types.map((type) => (
-            <span key={type}>{type}</span>
+            <span
+              key={type}
+              className={styles.typeBadge}
+              style={{
+                backgroundColor: `var(--type-${type.toLowerCase()})`,
+                color: `var(--type-${type.toLowerCase()}-text)`,
+              }}
+            >
+              {type}
+            </span>
           ))}
         </div>
-        <dl>
-          <dt>Height</dt>
-          <dd>{pokemon.height}</dd>
-          <dt>Weight</dt>
-          <dd>{pokemon.weight}</dd>
-          <dt>Category</dt>
-          <dd>{pokemon.category}</dd>
-          <dt>Gender Rate</dt>
-          <dd>{pokemon.genderRate}</dd>
+        <p className={styles.description}>{pokemon.description}</p>
+        <dl className={styles.infoGrid}>
+          <div>
+            <dt className={styles.infoLabel}>Height</dt>
+            <dd className={styles.infoValue}>
+              {(pokemon.height / 10).toFixed(1)} m
+            </dd>
+          </div>
+          <div>
+            <dt className={styles.infoLabel}>Weight</dt>
+            <dd className={styles.infoValue}>
+              {(pokemon.weight / 10).toFixed(1)} kg
+            </dd>
+          </div>
+          <div>
+            <dt className={styles.infoLabel}>Category</dt>
+            <dd className={styles.infoValue}>{pokemon.category}</dd>
+          </div>
+          <div>
+            <dt className={styles.infoLabel}>Gender Rate</dt>
+            <dd className={styles.infoValue}>{pokemon.genderRate}</dd>
+          </div>
         </dl>
-        <p>{pokemon.description}</p>
-        <div>
-          {Object.entries(pokemon.stats).map(([key, value]) => (
-            <StatBar key={key} label={STAT_LABELS[key] ?? key} value={value} />
+        <div className={styles.stats}>
+          {Object.entries(pokemon.stats).map(([key, value], index) => (
+            <StatBar
+              key={key}
+              label={STAT_LABELS[key] ?? key}
+              value={value}
+              index={index}
+            />
           ))}
         </div>
       </>
@@ -60,7 +96,7 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({
   }
 
   return (
-    <div role="region" aria-label="Pokemon details">
+    <div className={styles.panel} role="region" aria-label="Pokemon details">
       {renderContent()}
     </div>
   )
