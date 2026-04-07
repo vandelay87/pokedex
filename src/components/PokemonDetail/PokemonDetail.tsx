@@ -81,7 +81,7 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({
             <dd className={styles.infoValue}>{pokemon.genderRate}</dd>
           </div>
         </dl>
-        <div className={styles.stats}>
+        <div key={pokemon.id} className={styles.stats}>
           {Object.entries(pokemon.stats).map(([key, value], index) => (
             <StatBar
               key={key}
