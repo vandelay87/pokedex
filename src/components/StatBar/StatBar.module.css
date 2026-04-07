@@ -32,7 +32,7 @@
 .fill {
   height: 100%;
   border-radius: 2px;
-  width: var(--stat-width);
+  width: 0%;
   animation: fillBar 300ms ease-out forwards;
   animation-delay: calc(var(--stat-index, 0) * 75ms);
   transform-origin: left;
@@ -50,7 +50,7 @@
 @media (prefers-reduced-motion: reduce) {
   .fill {
     animation: none;
-    animation-delay: 0s;
+    width: var(--stat-width);
   }
 }
 
