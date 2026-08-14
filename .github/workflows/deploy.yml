@@ -52,4 +52,4 @@ jobs:
 
       - name: Invalidate CloudFront
         if: github.ref == 'refs/heads/main'
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/apps/pokedex/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_ID }} --paths "/apps/pokedex/*"
