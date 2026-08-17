@@ -2,7 +2,7 @@
 
 A searchable encyclopedia of Gen 1 Pokemon, styled after the classic Game Boy Color Pokedex. Built as a portfolio piece for [akli.dev](https://akli.dev).
 
-Live at: [akli.dev/apps/pokedex](https://akli.dev/apps/pokedex)
+Live at: [pokedex.akli.dev](https://pokedex.akli.dev)
 
 ## Features
 
