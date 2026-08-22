@@ -48,9 +48,7 @@ jobs:
 
       - name: Deploy to S3
         if: github.ref == 'refs/heads/main'
-        # TODO(subdomain-migration step 6): drop this exclude once the old
-        # apps/pokedex prefix is removed from the shared distribution's bucket.
-        run: aws s3 sync ./dist s3://${{ vars.AWS_S3_BUCKET_NAME }} --delete --exclude "apps/pokedex/*"
+        run: aws s3 sync ./dist s3://${{ vars.AWS_S3_BUCKET_NAME }} --delete
 
       - name: Invalidate CloudFront
         if: github.ref == 'refs/heads/main'
